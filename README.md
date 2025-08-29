@@ -181,3 +181,45 @@ Copy `.env.example` to `.env` and customize:
 - Real-time notifications
 - Authentication & authorization
 - Manager dashboard completion
+
+## 📋 Repository Information
+
+### Git Repository Status
+- **Repository**: Fully initialized with comprehensive commit history
+- **Branches**: `main` (default)
+- **Commits**: 3 major commits covering full development cycle
+- **Files**: 39 tracked files with proper .gitignore configuration
+
+### Repository Setup Commands
+```bash
+# Clone repository
+git clone <your-repo-url>
+cd plutusai
+
+# View commit history
+git log --oneline
+
+# Check repository status
+git status
+```
+
+### Contributing
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit changes (`git commit -m 'Add amazing feature'`)
+4. Push to branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+### Repository Structure
+```
+plutusai/
+├── core_services/          # Core infrastructure services
+├── domain_services/        # Business logic services
+├── webui/                  # Frontend applications
+├── infra/                  # Docker and deployment configs
+├── tests/                  # Unit and integration tests
+├── supabase/              # Database configuration
+├── requirements.txt        # Python dependencies
+├── docker-compose.yml     # Multi-service orchestration
+└── README.md              # This file
+```
