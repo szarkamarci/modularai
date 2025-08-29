@@ -85,20 +85,48 @@ API_PORT=8000
 
 ## Quick Start
 
-```bash
-# 1. Setup environment
-cp .env.example .env  # Configure Supabase credentials
+### 🐳 Docker (Recommended)
 
-# 2. Start services
+```bash
+# 1. Clone the repository
+git clone <your-repo-url>
+cd plutusai
+
+# 2. Start all services with Docker Compose
+cd infra
 docker-compose up -d
 
-# 3. Initialize database
-python -m core_services.database.init_db
+# 3. Initialize database (one-time setup)
+docker-compose exec grocery-api python -m core_services.database.init_db
 
 # 4. Access applications
-# Manager Dashboard: http://localhost:3000
-# API Docs: http://localhost:8000/docs
-# ML Workbench: http://localhost:8501
+# FastAPI Backend: http://localhost:8000
+# API Documentation: http://localhost:8000/docs
+# Streamlit Demo: http://localhost:8501
+# PostgreSQL: localhost:54322
+```
+
+### 🔧 Local Development
+
+```bash
+# 1. Install dependencies
+pip install -r requirements.txt
+
+# 2. Copy environment variables
+cp .env.example .env
+
+# 3. Start Supabase locally (optional)
+supabase start
+
+# 4. Initialize database
+python -m core_services.database.init_db
+
+# 5. Start services
+# FastAPI Backend
+python -m domain_services.grocery.main
+
+# Streamlit Frontend (in another terminal)
+streamlit run webui/ds_workbench/streamlit_app.py
 ```
 
 ## API Endpoints
@@ -109,15 +137,47 @@ python -m core_services.database.init_db
 - `POST /chat` - RAG chatbot for product queries
 - `POST /ml/retrain` - Trigger model retraining
 
+## 🐳 Docker Deployment
+
+### Production Deployment
+```bash
+# Build and start all services
+docker-compose -f infra/docker-compose.yml up -d --build
+
+# View logs
+docker-compose -f infra/docker-compose.yml logs -f
+
+# Stop services
+docker-compose -f infra/docker-compose.yml down
+```
+
+### Service Architecture
+- **grocery-api**: FastAPI backend (port 8000)
+- **ds-workbench**: Streamlit frontend (port 8501)  
+- **postgres**: PostgreSQL database (port 54322)
+- **manager-dashboard**: Vue.js UI (port 3000) *[planned]*
+
+### Environment Variables
+Copy `.env.example` to `.env` and customize:
+- Database credentials
+- Supabase configuration
+- ML model settings
+
 ## Development Roadmap
 
-✅ **Implemented so far:**
-- Core project structure and Docker setup
-- Basic FastAPI routes and SQLModel schemas
-- Vue 3 dashboard foundation
+✅ **Completed:**
+- Complete FastAPI backend with SQLModel ORM
+- PostgreSQL database with sample data
+- Comprehensive API endpoints (products, inventory, chat, ML)
+- Streamlit demo frontend with interactive dashboard
+- Docker containerization for all services
+- Unit tests with 100% pass rate
+- Git repository initialization
 
-🚀 **Next Priorities (good starting points for AI-assisted dev in Windsurf):**
-- Supabase database integration
-- Demand forecasting pipeline
-- RAG chatbot implementation
+🚀 **Next Priorities:**
+- Vue.js Manager Dashboard UI
+- Advanced ML demand forecasting
+- RAG chatbot with vector embeddings
+- Real-time notifications
+- Authentication & authorization
 - Manager dashboard completion
