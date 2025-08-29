@@ -1,0 +1,72 @@
+version: '3.8'
+
+services:
+  grocery-api:
+    build:
+      context: ..
+      dockerfile: infra/Dockerfile.api
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql://postgres:your-super-secret-jwt-token-with-at-least-32-characters-long@postgres:5432/postgres
+      - SUPABASE_URL=http://localhost:54321
+      - SUPABASE_ANON_KEY=your-anon-key
+      - SUPABASE_SERVICE_KEY=your-service-key
+    volumes:
+      - ../:/app
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - modularai-network
+
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: your-super-secret-jwt-token-with-at-least-32-characters-long
+    ports:
+      - "54322:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - modularai-network
+
+  manager-dashboard:
+    build:
+      context: ../webui/manager_dashboard
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - VITE_API_URL=http://localhost:8000
+    networks:
+      - modularai-network
+
+  ds-workbench:
+    build:
+      context: ..
+      dockerfile: infra/Dockerfile.streamlit
+    ports:
+      - "8501:8501"
+    environment:
+      - API_BASE_URL=http://grocery-api:8000
+    depends_on:
+      - grocery-api
+    restart: unless-stopped
+    networks:
+      - modularai-network
+
+volumes:
+  postgres_data:
+
+networks:
+  modularai-network:
+    driver: bridge
