@@ -12,6 +12,7 @@ import plotly.express as px
 import plotly.graph_objects as go
 from datetime import datetime, timedelta
 import json
+import os
 
 # Page configuration
 st.set_page_config(
@@ -22,7 +23,7 @@ st.set_page_config(
 )
 
 # API Configuration
-API_BASE_URL = "http://localhost:8000/api/v1"
+API_BASE_URL = os.getenv("API_BASE_URL", "http://localhost:8000") + "/api/v1"
 
 # Custom CSS for better styling
 st.markdown("""
