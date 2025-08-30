@@ -186,7 +186,7 @@ Copy `.env.example` to `.env` and customize:
 
 ### Branching rules for development
 
-![Git_Structure_Rules](/#System_Diagrams/images/Git_Structure_Rules.png)
+![Git_Structure_Rules](./System_Diagrams/images/Git_Structure_Rules.png)
 
 ### Git Repository Status
 - **Repository**: Fully initialized with comprehensive commit history
