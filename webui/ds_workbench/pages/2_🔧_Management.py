@@ -8,10 +8,11 @@ import streamlit as st
 import requests
 import pandas as pd
 from datetime import datetime
+import os
 
 st.set_page_config(page_title="Management", page_icon="🔧", layout="wide")
 
-API_BASE_URL = "http://localhost:8000/api/v1"
+API_BASE_URL = os.getenv("API_BASE_URL", "http://localhost:8000") + "/api/v1"
 
 def make_api_request(endpoint, method="GET", data=None):
     """Make API request to the FastAPI backend."""

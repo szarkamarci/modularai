@@ -11,10 +11,11 @@ import plotly.express as px
 import plotly.graph_objects as go
 from datetime import datetime, timedelta
 import numpy as np
+import os
 
 st.set_page_config(page_title="Analytics", page_icon="📊", layout="wide")
 
-API_BASE_URL = "http://localhost:8000/api/v1"
+API_BASE_URL = os.getenv("API_BASE_URL", "http://localhost:8000") + "/api/v1"
 
 def make_api_request(endpoint, method="GET", data=None):
     """Make API request to the FastAPI backend."""
@@ -28,10 +29,10 @@ def make_api_request(endpoint, method="GET", data=None):
         if response.status_code == 200:
             return response.json()
         else:
-            st.error(f"API Error: {response.status_code}")
+            st.error(f"API Error: {response.status_code} - {response.text}")
             return None
     except requests.exceptions.ConnectionError:
-        st.error("Cannot connect to API. Make sure the FastAPI server is running.")
+        st.error("🔌 Cannot connect to API. Make sure the FastAPI server is running.")
         return None
     except Exception as e:
         st.error(f"Request failed: {str(e)}")
