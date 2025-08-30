@@ -184,6 +184,10 @@ Copy `.env.example` to `.env` and customize:
 
 ## 📋 Repository Information
 
+### Branching rules for development
+
+
+
 ### Git Repository Status
 - **Repository**: Fully initialized with comprehensive commit history
 - **Branches**: `main` (default)
