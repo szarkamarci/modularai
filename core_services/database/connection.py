@@ -6,6 +6,7 @@ utilities for database operations with proper connection pooling.
 """
 
 import os
+import json
 from typing import Generator
 from sqlmodel import SQLModel, create_engine, Session
 from sqlalchemy.pool import StaticPool
@@ -13,36 +14,22 @@ from pydantic_settings import BaseSettings
 
 
 class DatabaseSettings(BaseSettings):
+    class Config:
+        env_file = ".env"
     """
     Database configuration settings.
     
     Loads configuration from environment variables with validation.
     """
-    database_url: str = "postgresql://postgres:postgres@localhost:54322/postgres"
-    supabase_url: str = "http://127.0.0.1:54321"
-    supabase_anon_key: str = ""
-    supabase_service_key: str = ""
-    echo_sql: bool = False
-    
-    class Config:
-        env_file = ".env"
+    def __init__(self, **kwargs):
 
+       self.database_url = kwargs.get("database_url", "")
+       self.supabase_url = kwargs.get("supabase_url", "")
+       self.supabase_anon_key = kwargs.get("supabase_anon_key", "")
+       self.supabase_service_key = kwargs.get("supabase_service_key", "")
+       self.echo_sql = kwargs.get("echo_sql", False)
 
-# Global settings instance
-settings = DatabaseSettings()
-
-# Create engine with connection pooling
-engine = create_engine(
-    settings.database_url,
-    echo=settings.echo_sql,
-    poolclass=StaticPool,
-    connect_args={
-        "check_same_thread": False,  # Only needed for SQLite
-    } if "sqlite" in settings.database_url else {},
-)
-
-
-def create_db_and_tables():
+def create_db_and_tables(engine):
     """
     Create all database tables based on SQLModel definitions.
     
@@ -52,7 +39,7 @@ def create_db_and_tables():
     SQLModel.metadata.create_all(engine)
 
 
-def get_session() -> Generator[Session, None, None]:
+def get_session(engine) -> Generator[Session, None, None]:
     """
     Dependency function to get database session.
     
@@ -68,7 +55,7 @@ def get_session() -> Generator[Session, None, None]:
         yield session
 
 
-def get_db_session() -> Session:
+def get_db_session(engine) -> Session:
     """
     Get a database session for direct use (not as dependency).
     
@@ -85,3 +72,26 @@ def get_db_session() -> Session:
             session.close()
     """
     return Session(engine)
+
+def build_engine(setup_path: str):
+
+    with open(setup_path, 'r') as f: #'settings_config_obj.json'
+        config_obj = json.load(f)
+
+    # Global settings instance
+    settings = DatabaseSettings(config_obj)
+
+    # Create engine with connection pooling
+    engine = create_engine(
+        settings.database_url,
+        echo=settings.echo_sql,
+        poolclass=StaticPool,
+        connect_args = {
+            "check_same_thread": False,  # Only needed for SQLite
+        } if "sqlite" in settings.database_url else {},
+    )
+
+    return engine
+
+
+

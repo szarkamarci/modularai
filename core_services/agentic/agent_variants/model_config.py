@@ -3,7 +3,6 @@ from typing import Annotated, Dict, List, Literal, Union
 
 from pydantic import BaseModel, Field
 
-
 class LlmConfig(BaseModel):
     endpoint_name: str
     max_tokens: int

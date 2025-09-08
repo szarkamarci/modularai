@@ -4,12 +4,14 @@ Database initialization script.
 This module provides functionality to initialize the database with tables
 and optionally seed it with sample data for development.
 """
-
-from sqlmodel import Session, select
-from core_services.database.connection import engine, create_db_and_tables, get_db_session
+import yaml
+from sqlmodel import SQLModel, create_engine, Session
+from core_services.database.connection import build_engine, create_db_and_tables, get_db_session
 from core_services.database.models import User, Store, Product, Transaction
 from datetime import datetime
 import logging
+
+from base_functions import create_table
 
 # Setup logging
 logging.basicConfig(level=logging.INFO)
@@ -25,14 +27,12 @@ def init_database():
     logger.info("Database tables created successfully!")
 
 
-def seed_sample_data():
+def seed_sample_data(session):
     """
     Seed the database with sample data for development and testing.
     
     Creates sample stores, users, products, and transactions.
-    """
-    session = get_db_session()
-    
+    """ 
     try:
         # Check if data already exists
         existing_stores = session.exec(select(Store)).first()
@@ -167,6 +167,13 @@ def seed_sample_data():
 
 
 if __name__ == "__main__":
-    init_database()
-    seed_sample_data()
+    
+    engine = build_engine(setup_path = setup_path)
+    SQLModel.metadata.create_all(engine)
+    session = Session(engine)
+
+    #init_database()
+    seed_sample_data(session)
     logger.info("Database initialization completed!")
+
+
