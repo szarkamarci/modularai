@@ -1,3 +1,19 @@
+import numpy as np
+import pandas as pd
+
+def calc_sma_info(df : pd.DataFrame, column: str, sma: int, shift: int):
+
+    column_sma = f"{column}_sma"
+    column_std = f"{column}_std"
+    column_z = f"{column}_z"
+
+    df[column_sma] = df[column].rolling(sma).mean().fillna()
+    df[column_std] = df[column].rolling(sma).std().fillna()
+    df[column_z] = df.apply(lambda x: (x[column] - x[column_sma])/x[column_std], axis = 1)
+
+    return df[[column, column_sma, column_std, column_z]]
+
+
 def bell_model_train(df : pd.DataFrame, column: str, sma: int, shift: int):
     n = df.shape[0]
 
