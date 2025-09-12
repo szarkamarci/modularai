@@ -1,0 +1,69 @@
+[tool.poetry]
+name = "ModularAI"
+version = "1.0.0"
+description = ""
+authors = ["Jakab Etele <jakabetele@gmail.com>",
+           "Szarka Marcell <heavymarcy98@gmail.com>"]
+
+packages = [
+]
+
+license = "proprietary"
+readme = "README.md"
+
+[tool.poetry.scripts]
+start = "modularai.main:main"
+
+[tool.poetry.group.main.dependencies]
+python = "^3.10"
+pandas = "^2.0"
+numpy = "^1.24"
+pyodbc = "^5.0.1"
+scikit-learn = "^1.3.2"
+hdfs = "^2.7.3"
+fastparquet = "^2024.2.0"
+requests = "^2.31.0"
+plotly = "^5.22.0"
+kaleido = "0.2.1"
+matplotlib = "^3.8.3"
+openpyxl = "^3.1.5"
+pyyaml = "^6.0.2"
+jinja2 = "^3.1.4"
+requests-kerberos = "^0.14.0"
+certifi = "^2024.12.14"
+bdi-boschcertifi = "^0.12.0"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^5.4"
+pytest-cov = "^4.0"
+pytest-html = "^3.0"
+pylint = "^2.17"
+pydantic = "^1.10"
+mkdocs = "^1.4"
+mkdocs-gen-files = "^0.5"
+mkdocs-literate-nav = "^0.6"
+mkdocs-material = "^9.1"
+mkdocs_puml = "^1.2"
+mkdocs-build-plantuml-plugin = "^1.7"
+mkdocs-section-index = "^0.3"
+mkdocstrings-python = "^1.1"
+markdown_katex = "^202406"
+pip-licenses = "^4.3.4"
+
+[tool.poetry.dependencies]
+
+[build-system]
+requires = ["poetry-core^1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+addopts = [
+    "--cov=src",
+    "--cov-report=xml:reports/pytest_coverage.xml",
+    "--durations=10",
+    "--log-file=logs/pytest.log",
+    "--html=reports/report.html",
+    "--self-contained-html"
+    ]
+testpaths = "src"
