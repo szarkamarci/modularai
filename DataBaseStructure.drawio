@@ -1,0 +1,40 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:142.0) Gecko/20100101 Firefox/142.0" version="28.2.1">
+  <diagram name="Page-1" id="t3Drmk_V5CEKQBTd6lls">
+    <mxGraphModel dx="1042" dy="659" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="FllwmVdfekWtpKbkW9a3-25" value="&lt;div align=&quot;justify&quot;&gt;&lt;b&gt;static_data_connection:&lt;/b&gt;&lt;/div&gt;&lt;ul&gt;&lt;li align=&quot;justify&quot;&gt;like data that only has to be&amp;nbsp;&lt;span lang=&quot;en&quot; class=&quot;Y2IQFc&quot;&gt;read like log in or menu&lt;/span&gt;&lt;/li&gt;&lt;li align=&quot;justify&quot;&gt;low latency connection&lt;/li&gt;&lt;/ul&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
+          <mxGeometry x="40" y="40" width="240" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="FllwmVdfekWtpKbkW9a3-26" value="&lt;div&gt;&lt;b&gt;model_train_connection:&lt;/b&gt;&lt;/div&gt;&lt;ul&gt;&lt;li&gt;model could be trained based on data uploaded, static database or dynamic database&lt;/li&gt;&lt;li&gt;connection should be established between user, database (temporal or permanent), model registry and model hosting servers&lt;/li&gt;&lt;li&gt;longer sessions higher latency but more stable connection&lt;/li&gt;&lt;/ul&gt;" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=default;align=left;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fontColor=default;fillColor=default;" parent="1" vertex="1">
+          <mxGeometry x="40" y="200" width="240" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="FllwmVdfekWtpKbkW9a3-27" value="&lt;div&gt;&lt;b&gt;data_upload_connection:&lt;/b&gt;&lt;/div&gt;&lt;ul&gt;&lt;li&gt;longer sessions for data upload&lt;/li&gt;&lt;li&gt;data robust but slower&lt;/li&gt;&lt;/ul&gt;" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=default;align=left;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fontColor=default;fillColor=default;" parent="1" vertex="1">
+          <mxGeometry x="40" y="440" width="240" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="FllwmVdfekWtpKbkW9a3-28" value="&lt;b&gt;data_server&lt;/b&gt;" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;align=center;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="400" y="40" width="200" height="400" as="geometry" />
+        </mxCell>
+        <mxCell id="FllwmVdfekWtpKbkW9a3-29" value="&lt;div align=&quot;left&quot;&gt;user_data:&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;user info&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;user history&lt;/span&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
+          <mxGeometry x="440" y="120" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="FllwmVdfekWtpKbkW9a3-30" value="&lt;div&gt;restaurant_data:&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;restaurant_list&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;menu_data&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=default;align=left;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fontColor=default;fillColor=default;" parent="1" vertex="1">
+          <mxGeometry x="440" y="240" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="FllwmVdfekWtpKbkW9a3-31" value="&lt;b&gt;model_server&lt;/b&gt;" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;align=center;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="400" y="480" width="200" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="FllwmVdfekWtpKbkW9a3-32" value="&lt;div align=&quot;left&quot;&gt;model_registry:&lt;/div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;model info&lt;div align=&quot;left&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;model log info&lt;/span&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
+          <mxGeometry x="440" y="560" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="FllwmVdfekWtpKbkW9a3-33" value="&lt;b&gt;procedural_server&lt;/b&gt;" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;align=center;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="400" y="720" width="200" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="FllwmVdfekWtpKbkW9a3-34" value="&lt;div align=&quot;justify&quot;&gt;model_training:&lt;/div&gt;&lt;div align=&quot;justify&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;high computational capacity&lt;/span&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
+          <mxGeometry x="440" y="800" width="120" height="80" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
