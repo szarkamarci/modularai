@@ -19,7 +19,8 @@
 ## 📌 Upcoming
 - [ ] Demand forecasting ML pipeline implementation
 - [ ] RAG chatbot integration with embeddings
-- [ ] Manager Dashboard UI (Vue 3 + Tailwind)
+- [ ] **Task 5: Manager Dashboard UI** (Vue.js) - *Date: 2024-08-29*
+- [x] **Task 6: Local Development Setup** - *Date: 2025-09-13*
 - [ ] Data Scientist Streamlit workbench
 
 ## 🔍 Discovered During Work

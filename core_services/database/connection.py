@@ -26,6 +26,7 @@ class DatabaseSettings(BaseSettings):
     
     class Config:
         env_file = ".env"
+        extra = "ignore"
 
 
 # Global settings instance

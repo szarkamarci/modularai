@@ -137,6 +137,62 @@ streamlit run webui/ds_workbench/streamlit_app.py
 - `POST /chat` - RAG chatbot for product queries
 - `POST /ml/retrain` - Trigger model retraining
 
+### Local Development Setup (Without Docker)
+
+This setup allows you to run the FastAPI API and Streamlit UI locally while relying on Docker for the PostgreSQL database. This is ideal for faster development cycles.
+
+**Prerequisites:**
+- Python 3.10+
+- Docker and Docker Compose
+- An IDE (e.g., VS Code)
+
+**Step-by-Step Guide:**
+
+1.  **Start the Database:**
+    Run only the PostgreSQL database using Docker Compose. This ensures your data layer is consistent and isolated.
+    ```bash
+    docker-compose up -d postgres
+    ```
+
+2.  **Set Up a Virtual Environment:**
+    Create and activate a Python virtual environment to keep dependencies isolated.
+    ```bash
+    python -m venv venv
+    source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
+    ```
+
+3.  **Install Dependencies:**
+    Install all required Python packages from the `requirements.txt` file.
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+4.  **Configure Environment Variables:**
+    Create a `.env` file by copying the example file. This file stores your database credentials and other secrets.
+    ```bash
+    cp .env.example .env
+    ```
+    **Important:** The default `DATABASE_URL` in `.env.example` is configured for Docker's internal network. You must update it for local development to connect to the PostgreSQL container.
+
+    Open the `.env` file and change `DATABASE_URL` to:
+    ```
+    DATABASE_URL=postgresql://postgres:your-super-secret-jwt-token-with-at-least-32-characters-long@localhost:54322/postgres
+    ```
+
+5.  **Run the FastAPI Application:**
+    Start the FastAPI server using `uvicorn`. It will automatically reload when you make code changes.
+    ```bash
+    uvicorn domain_services.grocery.main:app --reload --port 8000
+    ```
+    The API will be available at `http://localhost:8000`.
+
+6.  **Run the Streamlit Frontend:**
+    In a **new terminal**, run the Streamlit data science workbench.
+    ```bash
+    streamlit run webui/ds_workbench/streamlit_app.py
+    ```
+    The Streamlit UI will be available at `http://localhost:8501`.
+
 ## 🐳 Docker Deployment
 
 ### Production Deployment
