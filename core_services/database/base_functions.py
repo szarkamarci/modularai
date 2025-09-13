@@ -43,24 +43,6 @@ def enable_vectorization(spark: SparkSession = None,
 
     return True
     
-def enable_vectorization(spark: SparkSession = None, 
-                         table_path: str = None, 
-                         print_info = False):
-    
-    if table_path == None:
-        raise Exception("Missing 'table_path'")
-
-    if print_info:
-        print(f"Altering table for vectorization: {table_path}")
-
-    if spark == None:
-        sc = SparkContext.getOrCreate()
-        spark = SparkSession(sc)
-    
-    spark.sql(f"ALTER TABLE {table_path} SET TBLPROPERTIES (delta.enableChangeDataFeed = true)")
-
-    return True
-    
 def read_table(spark: SparkSession = None, 
                query_obj: dict = None, 
                return_spark = False, 
