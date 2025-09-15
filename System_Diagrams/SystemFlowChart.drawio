@@ -1,35 +1,40 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:142.0) Gecko/20100101 Firefox/142.0" version="28.2.1">
   <diagram name="Page-1" id="I0afBMO-idtST2Y_pSwd">
-    <mxGraphModel dx="1880" dy="2418" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="2350" dy="2748" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="a80E-mtoE3ijMtIfiYb4-1" value="&lt;div&gt;START VM&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="a80E-mtoE3ijMtIfiYb4-1" value="&lt;div&gt;START VM&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="40" width="120" height="90" as="geometry" />
         </mxCell>
-        <mxCell id="a80E-mtoE3ijMtIfiYb4-9" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="a80E-mtoE3ijMtIfiYb4-2" target="a80E-mtoE3ijMtIfiYb4-1">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="a80E-mtoE3ijMtIfiYb4-2" value="run()" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="a80E-mtoE3ijMtIfiYb4-2" value="run()" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="40" y="160" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="a80E-mtoE3ijMtIfiYb4-3" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="a80E-mtoE3ijMtIfiYb4-1" target="a80E-mtoE3ijMtIfiYb4-2">
+        <mxCell id="a80E-mtoE3ijMtIfiYb4-4" value="domain_services" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="110" y="-1050" width="330" height="410" as="geometry" />
+        </mxCell>
+        <mxCell id="a80E-mtoE3ijMtIfiYb4-6" value="grocey" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="140" y="-1010" width="280" height="340" as="geometry" />
+        </mxCell>
+        <mxCell id="a80E-mtoE3ijMtIfiYb4-8" value="&lt;div&gt;main.py&lt;/div&gt;&lt;br&gt;&lt;div align=&quot;left&quot;&gt;async def lifespan(app: FastAPI)&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;async def root()&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;async def health_check()&lt;/div&gt;&lt;div&gt;&lt;div align=&quot;left&quot;&gt;run()&lt;/div&gt;&lt;br&gt;&lt;/div&gt;" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="160" y="-920" width="240" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="GN04v9BuYIrZinfYvERa-1" value="" style="curved=1;endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;dashed=1;dashPattern=1 1;" edge="1" parent="1" source="a80E-mtoE3ijMtIfiYb4-8" target="a80E-mtoE3ijMtIfiYb4-2">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="90" y="370" as="sourcePoint" />
-            <mxPoint x="140" y="320" as="targetPoint" />
+            <mxPoint x="470" y="-40" as="sourcePoint" />
+            <mxPoint x="520" y="-90" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="520" y="-40" />
+              <mxPoint x="210" y="-70" />
+              <mxPoint x="470" y="-90" />
+            </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="a80E-mtoE3ijMtIfiYb4-4" value="domain_services" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;" vertex="1" parent="1">
-          <mxGeometry x="680" y="-680" width="330" height="410" as="geometry" />
-        </mxCell>
-        <mxCell id="a80E-mtoE3ijMtIfiYb4-6" value="grocey" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;" vertex="1" parent="1">
-          <mxGeometry x="710" y="-640" width="280" height="340" as="geometry" />
-        </mxCell>
-        <mxCell id="a80E-mtoE3ijMtIfiYb4-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="a80E-mtoE3ijMtIfiYb4-8" target="a80E-mtoE3ijMtIfiYb4-2">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="a80E-mtoE3ijMtIfiYb4-8" value="&lt;div&gt;main.py&lt;/div&gt;&lt;br&gt;&lt;div align=&quot;left&quot;&gt;async def lifespan(app: FastAPI)&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;async def root()&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;async def health_check()&lt;/div&gt;&lt;div&gt;&lt;div align=&quot;left&quot;&gt;run()&lt;/div&gt;&lt;br&gt;&lt;/div&gt;" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;verticalAlign=top;" vertex="1" parent="1">
-          <mxGeometry x="730" y="-550" width="240" height="170" as="geometry" />
+        <mxCell id="GN04v9BuYIrZinfYvERa-2" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="a80E-mtoE3ijMtIfiYb4-1" target="a80E-mtoE3ijMtIfiYb4-2">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="610" y="-20" as="sourcePoint" />
+            <mxPoint x="660" y="-70" as="targetPoint" />
+          </mxGeometry>
         </mxCell>
       </root>
     </mxGraphModel>
