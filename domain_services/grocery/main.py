@@ -16,6 +16,8 @@ from domain_services.grocery.api.inventory import router as inventory_router
 from domain_services.grocery.api.chat import router as chat_router
 from domain_services.grocery.api.ml import router as ml_router
 
+import uvicorn
+
 # Setup logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -100,9 +102,7 @@ async def health_check():
         "version": "1.0.0"
     }
 
-
-if __name__ == "__main__":
-    import uvicorn
+def run():
     uvicorn.run(
         "domain_services.grocery.main:app",
         host="0.0.0.0",
@@ -110,3 +110,7 @@ if __name__ == "__main__":
         reload=True,
         log_level="info"
     )
+
+if __name__ == "__main__":
+    run()
+    

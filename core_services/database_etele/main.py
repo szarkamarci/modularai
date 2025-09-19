@@ -15,6 +15,7 @@ def ger_start_args():
     return parser.parse_args()
 
 def main():
+    
     setup_path = ger_start_args()
 
     if setup_path == '':
