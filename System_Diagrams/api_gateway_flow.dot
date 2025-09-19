@@ -1,0 +1,40 @@
+digraph ApiGatewayFlow {
+    rankdir=LR;
+    node [shape=box, style="rounded,filled", fontname="Arial"];
+
+    subgraph cluster_gateway {
+        label="API Gateway (FastAPI Router)";
+        bgcolor="#FFF9C4";
+        
+        api_gateway [label="Incoming HTTP Request", shape=ellipse, style=filled, fillcolor="#FFFFFF"];
+
+        subgraph cluster_routes {
+            label="Routes";
+            bgcolor="#FFFFFF";
+            products_route [label="/api/v1/products"];
+            inventory_route [label="/api/v1/inventory"];
+            chat_route [label="/api/v1/chat"];
+            ml_route [label="/api/v1/ml"];
+        }
+    }
+
+    subgraph cluster_services {
+        label="Backend Services (API Routers)";
+        bgcolor="#E3F2FD";
+        products_router [label="📦 products_router\n(api/products.py)"];
+        inventory_router [label="📊 inventory_router\n(api/inventory.py)"];
+        chat_router [label="💬 chat_router\n(api/chat.py)"];
+        ml_router [label="🤖 ml_router\n(api/ml.py)"];
+    }
+
+    // Edges
+    api_gateway -> products_route;
+    api_gateway -> inventory_route;
+    api_gateway -> chat_route;
+    api_gateway -> ml_route;
+
+    products_route -> products_router [label="routes to"];
+    inventory_route -> inventory_router [label="routes to"];
+    chat_route -> chat_router [label="routes to"];
+    ml_route -> ml_router [label="routes to"];
+}

@@ -1,0 +1,44 @@
+digraph FullstackArchitecture {
+    rankdir=TB;
+    splines=ortho;
+    node [shape=box, style="rounded,filled", fontname="Arial"];
+
+    subgraph cluster_user {
+        label="User Interaction";
+        bgcolor="#EFEFEF";
+        user [label="👤 User", shape=circle, style=filled, fillcolor="#FFFFFF"];
+    }
+
+    subgraph cluster_frontend {
+        label="Frontend Layer";
+        bgcolor="#E3F2FD";
+        frontend [label="🌐 Web UI\n(Streamlit)", fillcolor="#BBDEFB"];
+    }
+
+    subgraph cluster_backend {
+        label="Backend Layer";
+        bgcolor="#F3E5F5";
+        api_gateway [label="🌉 API Gateway\n(FastAPI)", fillcolor="#E1BEE7"];
+        
+        subgraph cluster_services {
+            label="Internal Services";
+            bgcolor="#FFFFFF";
+            products_service [label="📦 Products Service"];
+            inventory_service [label="📊 Inventory Service"];
+            chat_service [label="💬 Chat Service (RAG)"];
+            ml_service [label="🤖 ML Service"];
+        }
+    }
+
+    subgraph cluster_data {
+        label="Data Layer";
+        bgcolor="#E8F5E9";
+        database [label="💾 PostgreSQL DB\n(SQLModel)", shape=cylinder, fillcolor="#C8E6C9"];
+    }
+
+    // Edges (Traffic Flow)
+    user -> frontend [label="Interacts with UI"];
+    frontend -> api_gateway [label="HTTP Requests"];
+    api_gateway -> {products_service, inventory_service, chat_service, ml_service} [label="Routes to"];
+    {products_service, inventory_service, chat_service, ml_service} -> database [label="Reads/Writes"];
+}

@@ -1,0 +1,38 @@
+digraph ServiceCalls {
+    rankdir=LR;
+    node [shape=box, style="rounded,filled", fontname="Arial"];
+
+    subgraph cluster_main_app {
+        label="FastAPI Application";
+        bgcolor="#FFF9C4";
+        main_app [label="app: FastAPI\n(main.py)"];
+        lifespan [label="🌟 lifespan()\n(main.py)"];
+    }
+
+    subgraph cluster_api_handlers {
+        label="API Route Handlers";
+        bgcolor="#E3F2FD";
+        get_products [label="🌟 get_products()\n(api/products.py)"];
+        get_stock_alerts [label="🌟 get_stock_alerts()\n(api/inventory.py)"];
+        chat_with_products [label="🌟 chat_with_products()\n(api/chat.py)"];
+        get_demand_predictions [label="🌟 get_demand_predictions()\n(api/ml.py)"];
+    }
+
+    subgraph cluster_db_connection {
+        label="Database Connection";
+        bgcolor="#E8F5E9";
+        get_session [label="🌟 get_session()\n(database/connection.py)"];
+        create_db_and_tables [label="🌟 create_db_and_tables()\n(database/connection.py)"];
+    }
+
+    // Edges
+    main_app -> lifespan [label="on_startup"];
+    lifespan -> create_db_and_tables [label="Initializes DB"];
+    
+    main_app -> {get_products, get_stock_alerts, chat_with_products, get_demand_predictions} [label="Routes request to"];
+    
+    get_products -> get_session [label="Gets DB session"];
+    get_stock_alerts -> get_session;
+    chat_with_products -> get_session;
+    get_demand_predictions -> get_session;
+}

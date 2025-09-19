@@ -1,0 +1,38 @@
+📦 plutusai
+ ┣ 📂 core_services
+ ┃ ┗ 📂 database
+ ┃ ┣ 📜 connection.py
+ ┃ ┃ ┣ 🌟 def create_db_and_tables()
+ ┃ ┃ ┗ 🌟 def get_session()
+ ┃ ┗ 📜 init_db.py
+ ┃ ┣ 🌟 def init_database()
+ ┃ ┗ 🌟 def seed_sample_data()
+ ┣ 📂 domain_services
+ ┃ ┗ 📂 grocery
+ ┃ ┣ 📂 api
+ ┃ ┃ ┣ 📜 chat.py
+ ┃ ┃ ┃ ┗ 🌟 async def chat_with_products()
+ ┃ ┃ ┣ 📜 inventory.py
+ ┃ ┃ ┃ ┣ 🌟 async def get_stock_alerts()
+ ┃ ┃ ┃ ┗ 🌟 async def adjust_stock()
+ ┃ ┃ ┣ 📜 ml.py
+ ┃ ┃ ┃ ┣ 🌟 async def get_demand_predictions()
+ ┃ ┃ ┃ ┗ 🌟 async def retrain_models()
+ ┃ ┃ ┗ 📜 products.py
+ ┃ ┃ ┣ 🌟 async def get_products()
+ ┃ ┃ ┣ 🌟 async def create_product()
+ ┃ ┃ ┗ 🌟 async def update_product()
+ ┃ ┗ 📜 main.py
+ ┃ ┣ 🌟 async def lifespan()
+ ┃ ┗ 🌟 uvicorn.run()
+ ┣ 📂 webui
+ ┃ ┗ 📂 ds_workbench
+ ┃ ┗ 📜 streamlit_app.py
+ ┣ 📂 System_Diagrams
+ ┃ ┣ 📜 architecture.dot
+ ┃ ┣ 📜 api_gateway_flow.dot
+ ┃ ┣ 📜 service_calls.dot
+ ┃ ┗ 📜 project_structure.txt
+ ┣ 📜 ARCHITECTURE.md
+ ┣ 📜 README.md
+ ┗ 📜 requirements.txt
