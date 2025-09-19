@@ -106,28 +106,65 @@ docker-compose exec grocery-api python -m core_services.database.init_db
 # PostgreSQL: localhost:54322
 ```
 
-### 🔧 Local Development
+### 🔧 Local Development (without Docker)
+
+These instructions guide you through setting up and running the application locally using a Conda virtual environment.
+
+**Prerequisites:**
+- [Conda](https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html) installed on your system.
+
+**1. Create and Activate the Conda Environment**
 
 ```bash
-# 1. Install dependencies
-pip install -r requirements.txt
+# Navigate to the build directory
+cd build
 
-# 2. Copy environment variables
+# Create the Conda environment from the environment.yml file
+conda env create -f environment.yml
+
+# Activate the newly created environment
+conda activate plutusai
+```
+
+**2. Configure Environment Variables**
+
+```bash
+# Navigate back to the root directory
+cd ..
+
+# Create a local .env file from the example
 cp .env.example .env
+```
 
-# 3. Start Supabase locally (optional)
-supabase start
+After creating the `.env` file, you may need to update the `DATABASE_URL` to match your local PostgreSQL instance if you are not using the one from the Docker setup.
 
-# 4. Initialize database
+**3. Initialize the Database**
+
+With the `plutusai` environment activated, run the database initialization script:
+
+```bash
 python -m core_services.database.init_db
+```
 
-# 5. Start services
-# FastAPI Backend
+**4. Run the Application**
+
+Open two separate terminal windows, activate the `plutusai` environment in each, and run the following commands:
+
+```bash
+# Terminal 1: Start the FastAPI Backend
 python -m domain_services.grocery.main
+```
 
-# Streamlit Frontend (in another terminal)
+```bash
+# Terminal 2: Start the Streamlit Frontend
 streamlit run webui/ds_workbench/streamlit_app.py
 ```
+
+**5. Access the Application**
+
+- **FastAPI Backend**: [http://localhost:8000](http://localhost:8000)
+- **API Docs**: [http://localhost:8000/docs](http://localhost:8000/docs)
+- **Streamlit Frontend**: [http://localhost:8501](http://localhost:8501)
 
 ## API Endpoints
 
@@ -136,6 +173,62 @@ streamlit run webui/ds_workbench/streamlit_app.py
 - `GET /inventory/alerts` - Current stockout warnings  
 - `POST /chat` - RAG chatbot for product queries
 - `POST /ml/retrain` - Trigger model retraining
+
+### Local Development Setup (Without Docker)
+
+This setup allows you to run the FastAPI API and Streamlit UI locally while relying on Docker for the PostgreSQL database. This is ideal for faster development cycles.
+
+**Prerequisites:**
+- Python 3.10+
+- Docker and Docker Compose
+- An IDE (e.g., VS Code)
+
+**Step-by-Step Guide:**
+
+1.  **Start the Database:**
+    Run only the PostgreSQL database using Docker Compose. This ensures your data layer is consistent and isolated.
+    ```bash
+    docker-compose up -d postgres
+    ```
+
+2.  **Set Up a Virtual Environment:**
+    Create and activate a Python virtual environment to keep dependencies isolated.
+    ```bash
+    python -m venv venv
+    source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
+    ```
+
+3.  **Install Dependencies:**
+    Install all required Python packages from the `requirements.txt` file.
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+4.  **Configure Environment Variables:**
+    Create a `.env` file by copying the example file. This file stores your database credentials and other secrets.
+    ```bash
+    cp .env.example .env
+    ```
+    **Important:** The default `DATABASE_URL` in `.env.example` is configured for Docker's internal network. You must update it for local development to connect to the PostgreSQL container.
+
+    Open the `.env` file and change `DATABASE_URL` to:
+    ```
+    DATABASE_URL=postgresql://postgres:your-super-secret-jwt-token-with-at-least-32-characters-long@localhost:54322/postgres
+    ```
+
+5.  **Run the FastAPI Application:**
+    Start the FastAPI server using `uvicorn`. It will automatically reload when you make code changes.
+    ```bash
+    uvicorn domain_services.grocery.main:app --reload --port 8000
+    ```
+    The API will be available at `http://localhost:8000`.
+
+6.  **Run the Streamlit Frontend:**
+    In a **new terminal**, run the Streamlit data science workbench.
+    ```bash
+    streamlit run webui/ds_workbench/streamlit_app.py
+    ```
+    The Streamlit UI will be available at `http://localhost:8501`.
 
 ## 🐳 Docker Deployment
 

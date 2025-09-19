@@ -21,13 +21,30 @@ class DatabaseSettings(BaseSettings):
     
     Loads configuration from environment variables with validation.
     """
-    def __init__(self, **kwargs):
+    database_url: str = "postgresql://postgres:postgres@localhost:54322/postgres"
+    supabase_url: str = "http://127.0.0.1:54321"
+    supabase_anon_key: str = ""
+    supabase_service_key: str = ""
+    echo_sql: bool = False
+    
+    class Config:
+        env_file = ".env"
+        extra = "ignore"
 
-       self.database_url = kwargs.get("database_url", "")
-       self.supabase_url = kwargs.get("supabase_url", "")
-       self.supabase_anon_key = kwargs.get("supabase_anon_key", "")
-       self.supabase_service_key = kwargs.get("supabase_service_key", "")
-       self.echo_sql = kwargs.get("echo_sql", False)
+
+# Global settings instance
+settings = DatabaseSettings()
+
+# Create engine with connection pooling
+engine = create_engine(
+    settings.database_url,
+    echo=settings.echo_sql,
+    poolclass=StaticPool,
+    connect_args={
+        "check_same_thread": False,  # Only needed for SQLite
+    } if "sqlite" in settings.database_url else {},
+)
+
 
 def create_db_and_tables(engine):
     """

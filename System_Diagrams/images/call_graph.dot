@@ -1,0 +1,74 @@
+digraph Project {
+    rankdir=LR;
+    node [shape=box, style=rounded];
+
+    // External process
+    start_vm [label="START VM / Docker", shape=box, style=filled, color=lightblue];
+
+    // Core Services
+    subgraph cluster_core_services {
+        label="core_services";
+        style=filled;
+        color=lightgrey;
+
+        subgraph cluster_database {
+            label="database";
+            style=filled;
+            color=white;
+
+            create_db_and_tables [label="create_db_and_tables()\n(connection.py)"];
+            get_session [label="get_session()\n(connection.py)"];
+            init_db [label="init_database()\n(init_db.py)"];
+            seed_data [label="seed_sample_data()\n(init_db.py)"];
+        }
+    }
+
+    // Domain Services
+    subgraph cluster_domain_services {
+        label="domain_services";
+        style=filled;
+        color=lightgrey;
+
+        subgraph cluster_grocery {
+            label="grocery";
+            style=filled;
+            color=white;
+
+            subgraph cluster_main {
+                label="main.py";
+                style=filled;
+                color=lightyellow;
+
+                run_app [label="uvicorn.run(app)"];
+                lifespan [label="async def lifespan(app: FastAPI)"];
+            }
+
+            subgraph cluster_api {
+                label="api";
+                style=filled;
+                color=lightcyan;
+
+                get_products [label="get_products()\n(products.py)"];
+                get_stock_alerts [label="get_stock_alerts()\n(inventory.py)"];
+                chat_with_products [label="chat_with_products()\n(chat.py)"];
+                get_demand_predictions [label="get_demand_predictions()\n(ml.py)"];
+            }
+        }
+    }
+
+    // Edges
+    start_vm -> run_app [label="starts server"];
+    run_app -> lifespan [label="on startup"];
+    lifespan -> create_db_and_tables [label="initializes schema"];
+
+    // Manual DB initialization
+    start_vm -> init_db [label="manual init"];
+    init_db -> create_db_and_tables;
+    init_db -> seed_data;
+
+    // API to DB connections
+    get_products -> get_session;
+    get_stock_alerts -> get_session;
+    chat_with_products -> get_session;
+    get_demand_predictions -> get_session;
+}
