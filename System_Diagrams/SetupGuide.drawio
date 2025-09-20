@@ -1,11 +1,11 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:143.0) Gecko/20100101 Firefox/143.0" version="28.2.3">
   <diagram name="Page-1" id="nt8__4hGgqFVjTAPl2SF">
-    <mxGraphModel dx="2084" dy="1318" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1226" dy="775" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="_MN1LeQqFzLLGfah7adV-98" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry y="680" width="1370" height="1490" as="geometry" />
+          <mxGeometry y="680" width="1480" height="1040" as="geometry" />
         </mxCell>
         <mxCell id="_MN1LeQqFzLLGfah7adV-6" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="60" y="890" width="990" height="760" as="geometry" />
@@ -91,7 +91,7 @@
         <mxCell id="_MN1LeQqFzLLGfah7adV-11" value="&lt;div&gt;cmd&lt;/div&gt;" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="_MN1LeQqFzLLGfah7adV-31">
           <mxGeometry width="260" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="_MN1LeQqFzLLGfah7adV-12" value="cd ..&lt;br&gt;cp .env.example .env" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;" vertex="1" parent="_MN1LeQqFzLLGfah7adV-31">
+        <mxCell id="_MN1LeQqFzLLGfah7adV-12" value="cd ..&lt;br&gt;&lt;span style=&quot;background-color: light-dark(rgb(255, 0, 0), rgb(237, 237, 237));&quot;&gt;&lt;span style=&quot;background-color: light-dark(rgb(255, 0, 0), rgb(237, 237, 237));&quot;&gt;&lt;span style=&quot;background-color: light-dark(#ffffff, var(--ge-dark-color, #121212));&quot;&gt;&lt;span style=&quot;color: light-dark(rgb(255, 0, 0), rgb(237, 237, 237));&quot;&gt;cp .env.example .env&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;" vertex="1" parent="_MN1LeQqFzLLGfah7adV-31">
           <mxGeometry y="23" width="260" height="79" as="geometry" />
         </mxCell>
         <mxCell id="_MN1LeQqFzLLGfah7adV-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="_MN1LeQqFzLLGfah7adV-31" source="_MN1LeQqFzLLGfah7adV-12" target="_MN1LeQqFzLLGfah7adV-12">
